@@ -1,0 +1,585 @@
+rem tik-tac-toe
+rem Sumit Shinde
+declare BBjAPI api!
+declare BBjSysGui sysgui!
+declare BBjTopLevelWindow wnd!
+declare BBjButton btn1!
+declare BBjButton btn2!
+declare BBjButton btn3!
+declare BBjButton btn4!
+declare BBjButton btn5!
+declare BBjButton btn6!
+declare BBjButton btn7!
+declare BBjButton btn8!
+declare BBjButton btn9!
+
+
+
+api! = BBjAPI()
+sysgui! = api!.openSysGui("X0")
+
+sum = 2
+
+rem create Window for game
+wnd! = sysgui!.addWindow(10,10,640,480,"Tic-Tac-Toe")
+rem create two players
+txt1! = wnd!.addStaticText(401, 250,20, 70, 500, "player 1: X")
+txt2! = wnd!.addStaticText(402, 250,50, 70, 500, "player 2: O")
+rem create buttons for game
+btn1! = wnd!.addButton(101,100,100,100,100," ")
+btn2! = wnd!.addButton(102,200,100,100,100," ")
+btn3! = wnd!.addButton(103,300,100,100,100," ")
+
+btn4! = wnd!.addButton(104,100,200,100,100," ")
+btn5! = wnd!.addButton(105,200,200,100,100," ")
+btn6! = wnd!.addButton(106,300,200,100,100," ")
+
+btn7! = wnd!.addButton(107,100,300,100,100," ")
+btn8! = wnd!.addButton(108,200,300,100,100," ")
+btn9! = wnd!.addButton(109,300,300,100,100," ")
+
+wnd!.setCallback(BBjAPI.ON_CLOSE,"byebye")
+rem button click call
+btn1!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed1")
+btn1!.setDisableOnClick(1)
+btn2!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed2")
+btn2!.setDisableOnClick(1)
+btn3!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed3")
+btn3!.setDisableOnClick(1)
+btn4!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed4")
+btn4!.setDisableOnClick(1)
+btn5!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed5")
+btn5!.setDisableOnClick(1)
+btn6!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed6")
+btn6!.setDisableOnClick(1)
+btn7!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed7")
+btn7!.setDisableOnClick(1)
+btn8!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed8")
+btn8!.setDisableOnClick(1)
+btn9!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed9")
+btn9!.setDisableOnClick(1)
+
+process_events
+rem button 1 events
+pushed1:
+	a=MOD(sum,2)
+	IF a=0 then
+		btn1!.setText("X")
+		p=2
+		text1!=wnd!.addStaticText(1,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b1$=btn1!.getText()
+
+         IF b1$=b2$ AND b2$=b3$ AND b1$=b3$ THEN
+          
+              text21!=wnd!.addStaticText(502,500,200,90,500, "Player 1 Is Winner")
+              btn1!.setBackColor(BBjColor.RED)
+              btn2!.setBackColor(BBjColor.RED)
+              btn3!.setBackColor(BBjColor.RED)
+          endif
+          IF b1$=b5$ AND b5$=b9$ AND b1$=b9$ THEN
+           
+              text22!=wnd!.addStaticText(503,500,200,90,500, "Player 1 Is Winner")
+              btn1!.setBackColor(BBjColor.RED)
+              btn5!.setBackColor(BBjColor.RED)
+              btn9!.setBackColor(BBjColor.RED)
+          endif
+          IF b1$=b4$ AND b4$=b7$ AND b1$=b7$ THEN
+           
+              text23!=wnd!.addStaticText(504,500,200,90,500, "Player 1 Is Winner")
+              btn1!.setBackColor(BBjColor.RED)
+              btn4!.setBackColor(BBjColor.RED)
+              btn7!.setBackColor(BBjColor.RED)
+          endif
+		
+
+	else
+		btn1!.setText("O")
+		p=1
+		text2!=wnd!.addStaticText(2,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b1$=btn1!.getText()
+
+         IF b1$=b2$ AND b2$=b3$ AND b1$=b3$ THEN
+          
+              text24!=wnd!.addStaticText(505,500,200,90,500, "Player 2 Is Winner")
+              btn1!.setBackColor(BBjColor.BLUE)
+              btn2!.setBackColor(BBjColor.BLUE)
+              btn3!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b1$=b5$ AND b5$=b9$ AND b1$=b9$ THEN
+           
+              text25!=wnd!.addStaticText(506,500,200,90,500, "Player 2 Is Winner")
+              btn1!.setBackColor(BBjColor.BLUE)
+              btn5!.setBackColor(BBjColor.BLUE)
+              btn9!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b1$=b4$ AND b4$=b7$ AND b1$=b7$ THEN
+           
+              text26!=wnd!.addStaticText(507,500,200,90,500, "Player 2 Is Winner")
+              btn1!.setBackColor(BBjColor.BLUE)
+              btn4!.setBackColor(BBjColor.BLUE)
+              btn7!.setBackColor(BBjColor.BLUE)
+          endif
+		
+	endif
+return
+	rem button 2 event
+pushed2:                                                      
+	a=MOD(sum,2)
+	IF a=0 then
+		btn2!.setText("X")
+		p=2
+		text3!=wnd!.addStaticText(3,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b2$=btn2!.getText()
+		IF b1$=b2$ AND b2$=b3$ AND b1$=b3$ THEN
+		 
+              text27!=wnd!.addStaticText(508,500,200,90,500, "Player 1 Is Winner")
+              btn1!.setBackColor(BBjColor.RED)
+              btn2!.setBackColor(BBjColor.RED)
+              btn3!.setBackColor(BBjColor.RED)
+          endif
+          IF b2$=b5$ AND b5$=b8$ AND b2$=b8$ THEN
+           
+              text28!=wnd!.addStaticText(509,500,200,90,500, "Player 1 Is Winner")
+              btn1!.setBackColor(BBjColor.RED)
+              btn5!.setBackColor(BBjColor.RED)
+              btn8!.setBackColor(BBjColor.RED)
+          endif
+		
+		
+	else
+		btn2!.setText("O")
+		p=1
+		text4!=wnd!.addStaticText(4,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b2$=btn2!.getText()
+		IF b1$=b2$ AND b2$=b3$ AND b1$=b3$ THEN
+		 
+              text29!=wnd!.addStaticText(510,500,200,90,500, "Player 2 Is Winner")
+              btn1!.setBackColor(BBjColor.BLUE)
+              btn2!.setBackColor(BBjColor.BLUE)
+              btn3!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b2$=b5$ AND b5$=b8$ AND b2$=b8$ THEN
+           
+              text30!=wnd!.addStaticText(511,500,200,90,500, "Player 2 Is Winner")
+              btn2!.setBackColor(BBjColor.BLUE)
+              btn5!.setBackColor(BBjColor.BLUE)
+              btn8!.setBackColor(BBjColor.BLUE)
+          endif
+		
+		
+	endif
+return
+	rem button 3 event
+pushed3:
+	a=MOD(sum,2)
+	IF a=0 then
+		btn3!.setText("X")
+		p=2
+		text5!=wnd!.addStaticText(5,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b3$=btn3!.getText()
+		IF b1$=b2$ AND b2$=b3$ AND b1$=b3$ THEN
+		 
+              text31!=wnd!.addStaticText(512,500,200,90,500, "Player 1 Is Winner")
+              btn1!.setBackColor(BBjColor.RED)
+              btn2!.setBackColor(BBjColor.RED)
+              btn3!.setBackColor(BBjColor.RED)
+          endif
+          IF b3$=b6$ AND b6$=b9$ AND b3$=b9$ THEN
+           
+              text32!=wnd!.addStaticText(513,500,200,90,500, "Player 1 Is Winner")
+              btn3!.setBackColor(BBjColor.RED)
+              btn6!.setBackColor(BBjColor.RED)
+              btn9!.setBackColor(BBjColor.RED)
+          endif
+          IF b3$=b5$ AND b5$=b7$ AND b3$=b7$ THEN
+           
+              text33!=wnd!.addStaticText(514,500,200,90,500, "Player 1 Is Winner")
+              btn3!.setBackColor(BBjColor.RED)
+              btn5!.setBackColor(BBjColor.RED)
+              btn7!.setBackColor(BBjColor.RED)
+          endif
+		
+	
+	else
+		btn3!.setText("O")
+		p=1
+		text6!=wnd!.addStaticText(6,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b3$=btn3!.getText()
+		IF b1$=b2$ AND b2$=b3$ AND b1$=b3$ THEN
+		 
+              text34!=wnd!.addStaticText(515,500,200,90,500, "Player 2 Is Winner")
+              btn1!.setBackColor(BBjColor.BLUE)
+              btn2!.setBackColor(BBjColor.BLUE)
+              btn3!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b3$=b6$ AND b6$=b9$ AND b3$=b9$ THEN
+           
+              text35!=wnd!.addStaticText(516,500,200,90,500, "Player 2 Is Winner")
+              btn3!.setBackColor(BBjColor.BLUE)
+              btn6!.setBackColor(BBjColor.BLUE)
+              btn9!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b3$=b5$ AND b5$=b7$ AND b3$=b7$ THEN
+           
+              text36!=wnd!.addStaticText(517,500,200,90,500, "Player 2 Is Winner")
+              btn3!.setBackColor(BBjColor.BLUE)
+              btn5!.setBackColor(BBjColor.BLUE)
+              btn7!.setBackColor(BBjColor.BLUE)
+          endif
+	endif
+return
+	
+	rem button 4 event
+pushed4:
+	a=MOD(sum,2)
+	IF a=0 then
+		btn4!.setText("X")
+		p=2
+		text7!=wnd!.addStaticText(7,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b4$=btn4!.getText()
+		IF b1$=b4$ AND b4$=b7$ AND b1$=b7$ THEN
+		 
+              text37!=wnd!.addStaticText(518,500,200,90,500, "Player 1 Is Winner")
+              btn1!.setBackColor(BBjColor.RED)
+              btn4!.setBackColor(BBjColor.RED)
+              btn7!.setBackColor(BBjColor.RED)
+          endif
+          IF b4$=b5$ AND b5$=b6$ AND b4$=b6$ THEN
+           
+              text38!=wnd!.addStaticText(519,500,200,90,500, "Player 1 Is Winner")
+              btn4!.setBackColor(BBjColor.RED)
+              btn5!.setBackColor(BBjColor.RED)
+              btn6!.setBackColor(BBjColor.RED)
+          endif
+          
+	
+	else
+		btn4!.setText("O")
+		p=1
+		text8!=wnd!.addStaticText(8,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b4$=btn4!.getText()
+		IF b1$=b4$ AND b4$=b7$ AND b4$=b7$ THEN
+		 
+              text39!=wnd!.addStaticText(520,500,200,90,500, "Player 2 Is Winner")
+              btn1!.setBackColor(BBjColor.BLUE)
+              btn4!.setBackColor(BBjColor.BLUE)
+              btn7!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b4$=b5$ AND b5$=b6$ AND b4$=b6$ THEN
+           
+              text40!=wnd!.addStaticText(521,500,200,90,500, "Player 2 Is Winner")
+              btn4!.setBackColor(BBjColor.BLUE)
+              btn5!.setBackColor(BBjColor.BLUE)
+              btn6!.setBackColor(BBjColor.BLUE)
+          endif
+		
+	endif
+return
+	rem button 4 event
+pushed5:
+	a=MOD(sum,2)
+	IF a=0 then
+		btn5!.setText("X")
+		p=2
+		text9!=wnd!.addStaticText(9,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b5$=btn5!.getText()
+		IF b1$=b5$ AND b5$=b9$ AND b1$=b9$ THEN
+		 
+              text41!=wnd!.addStaticText(522,500,200,90,500, "Player 1 Is Winner")
+              btn1!.setBackColor(BBjColor.RED)
+              btn5!.setBackColor(BBjColor.RED)
+              btn9!.setBackColor(BBjColor.RED)
+          endif
+          IF b3$=b5$ AND b5$=b7$ AND b3$=b7$ THEN
+           
+              text42!=wnd!.addStaticText(523,500,200,90,500, "Player 1 Is Winner")
+              btn3!.setBackColor(BBjColor.RED)
+              btn5!.setBackColor(BBjColor.RED)
+              btn7!.setBackColor(BBjColor.RED)
+          endif
+          IF b2$=b5$ AND b5$=b8$ AND b2$=b8$ THEN
+           
+              text43!=wnd!.addStaticText(524,500,200,90,500, "Player 1 Is Winner")
+              btn2!.setBackColor(BBjColor.RED)
+              btn5!.setBackColor(BBjColor.RED)
+              btn8!.setBackColor(BBjColor.RED)
+          endif
+          IF b4$=b5$ AND b5$=b6$ AND b4$=b6$ THEN
+           
+              text44!=wnd!.addStaticText(525,500,200,90,500, "Player 1 Is Winner")
+              btn4!.setBackColor(BBjColor.RED)
+              btn5!.setBackColor(BBjColor.RED)
+              btn6!.setBackColor(BBjColor.RED)
+          endif
+		
+	
+	else
+		btn5!.setText("O")
+		p=1
+		text10!=wnd!.addStaticText(10,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b5$=btn5!.getText()
+		IF b1$=b5$ AND b5$=b9$ AND b1$=b9$ THEN
+		 
+              text41!=wnd!.addStaticText(522,500,200,90,500, "Player 2 Is Winner")
+              btn1!.setBackColor(BBjColor.BLUE)
+              btn5!.setBackColor(BBjColor.BLUE)
+              btn9!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b3$=b5$ AND b5$=b7$ AND b3$=b7$ THEN
+           
+              text42!=wnd!.addStaticText(523,500,200,90,500, "Player 2 Is Winner")
+              btn3!.setBackColor(BBjColor.BLUE)
+              btn5!.setBackColor(BBjColor.BLUE)
+              btn7!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b2$=b5$ AND b5$=b8$ AND b2$=b8$ THEN
+           
+              text43!=wnd!.addStaticText(524,500,200,90,500, "Player 2 Is Winner")
+              btn2!.setBackColor(BBjColor.BLUE)
+              btn5!.setBackColor(BBjColor.BLUE)
+              btn8!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b4$=b5$ AND b5$=b6$ AND b4$=b6$ THEN
+           
+              text44!=wnd!.addStaticText(525,500,200,90,500, "Player 2 Is Winner")
+              btn4!.setBackColor(BBjColor.BLUE)
+              btn5!.setBackColor(BBjColor.BLUE)
+              btn6!.setBackColor(BBjColor.BLUE)
+          endif
+		
+	endif
+return
+	rem button 6 event
+pushed6:
+	a=MOD(sum,2)
+	IF a=0 then
+		btn6!.setText("X")
+		p=2
+		text11!=wnd!.addStaticText(11,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b6$=btn6!.getText()
+		IF b3$=b6$ AND b6$=b9$ AND b3$=b9$ THEN
+		 
+              text49!=wnd!.addStaticText(530,500,200,90,500, "Player 1 Is Winner")
+              btn3!.setBackColor(BBjColor.RED)
+              btn6!.setBackColor(BBjColor.RED)
+              btn9!.setBackColor(BBjColor.RED)
+          endif
+          IF b4$=b5$ AND b5$=b6$ AND b4$=b6$ THEN
+           
+              text50!=wnd!.addStaticText(531,500,200,90,500, "Player 1 Is Winner")
+              btn4!.setBackColor(BBjColor.RED)
+              btn5!.setBackColor(BBjColor.RED)
+              btn6!.setBackColor(BBjColor.RED)
+          endif
+		
+	
+	else
+		btn6!.setText("O")
+		p=1
+		text12!=wnd!.addStaticText(12,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b6$=btn6!.getText()
+		IF b3$=b6$ AND b6$=b9$ AND b3$=b9$ THEN
+		 
+              text51!=wnd!.addStaticText(532,500,200,90,500, "Player 2 Is Winner")
+              btn3!.setBackColor(BBjColor.BLUE)
+              btn6!.setBackColor(BBjColor.BLUE)
+              btn9!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b4$=b5$ AND b5$=b6$ AND b4$=b6$ THEN
+           
+              text52!=wnd!.addStaticText(533,500,200,90,500, "Player 2 Is Winner")
+              btn4!.setBackColor(BBjColor.BLUE)
+              btn5!.setBackColor(BBjColor.BLUE)
+              btn6!.setBackColor(BBjColor.BLUE)
+          endif
+		
+	endif
+return
+	rem button 7 event
+pushed7:
+	a=MOD(sum,2)
+	IF a=0 then
+		btn7!.setText("X")
+		p=2
+		text13!=wnd!.addStaticText(13,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b7$=btn7!.getText()
+		IF b1$=b4$ AND b4$=b7$ AND b1$=b7$ THEN
+		 
+              text53!=wnd!.addStaticText(534,500,200,90,500, "Player 1 Is Winner")
+              btn1!.setBackColor(BBjColor.RED)
+              btn4!.setBackColor(BBjColor.RED)
+              btn7!.setBackColor(BBjColor.RED)
+          endif
+          IF b7$=b8$ AND b8$=b9$ AND b7$=b9$ THEN
+           
+              text54!=wnd!.addStaticText(535,500,200,90,500, "Player 1 Is Winner")
+              btn7!.setBackColor(BBjColor.RED)
+              btn8!.setBackColor(BBjColor.RED)
+              btn9!.setBackColor(BBjColor.RED)
+          endif
+           IF b7$=b5$ AND b5$=b3$ AND b7$=b3$ THEN
+            
+              text55!=wnd!.addStaticText(536,500,200,90,500, "Player 1 Is Winner")
+              btn7!.setBackColor(BBjColor.RED)
+              btn5!.setBackColor(BBjColor.RED)
+              btn3!.setBackColor(BBjColor.RED)
+          endif
+		
+	
+	else
+		btn7!.setText("O")
+		p=1
+		text14!=wnd!.addStaticText(14,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b7$=btn7!.getText()
+		IF b1$=b4$ AND b4$=b7$ AND b1$=b7$ THEN
+		 
+              text56!=wnd!.addStaticText(537,500,200,90,500, "Player 2 Is Winner")
+              btn1!.setBackColor(BBjColor.BLUE)
+              btn4!.setBackColor(BBjColor.BLUE)
+              btn7!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b7$=b8$ AND b8$=b9$ AND b7$=b9$ THEN
+           
+              text57!=wnd!.addStaticText(538,500,200,90,500, "Player 2 Is Winner")
+              btn7!.setBackColor(BBjColor.BLUE)
+              btn8!.setBackColor(BBjColor.BLUE)
+              btn9!.setBackColor(BBjColor.BLUE)
+          endif
+           IF b7$=b5$ AND b5$=b3$ AND b7$=b3$ THEN
+            
+              text58!=wnd!.addStaticText(539,500,200,90,500, "Player 2 Is Winner")
+              btn7!.setBackColor(BBjColor.BLUE)
+              btn5!.setBackColor(BBjColor.BLUE)
+              btn3!.setBackColor(BBjColor.BLUE)
+          endif
+		
+	endif
+return
+	rem button 8 event
+pushed8:
+	a=MOD(sum,2)
+	IF a=0 then
+		btn8!.setText("X")
+		text15!=wnd!.addStaticText(15,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		p=2
+		b8$=btn8!.getText()
+		IF b7$=b8$ AND b8$=b9$ AND b7$=b9$ THEN
+		 
+              text59!=wnd!.addStaticText(540,500,200,90,500, "Player 1 Is Winner")
+              btn7!.setBackColor(BBjColor.RED)
+              btn8!.setBackColor(BBjColor.RED)
+              btn9!.setBackColor(BBjColor.RED)
+          endif
+          IF b2$=b5$ AND b5$=b8$ AND b2$=b8$ THEN
+           
+              text60!=wnd!.addStaticText(541,500,200,90,500, "Player 1 Is Winner")
+              btn2!.setBackColor(BBjColor.RED)
+              btn5!.setBackColor(BBjColor.RED)
+              btn8!.setBackColor(BBjColor.RED)
+          endif
+		
+		
+	
+	else
+		btn8!.setText("O")
+		p=1
+		text16!=wnd!.addStaticText(16,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b8$=btn8!.getText()
+		IF b7$=b8$ AND b8$=b9$ AND b7$=b9$ THEN
+		 
+              text59!=wnd!.addStaticText(540,500,200,90,500, "Player 2 Is Winner")
+              btn7!.setBackColor(BBjColor.BLUE)
+              btn8!.setBackColor(BBjColor.BLUE)
+              btn9!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b2$=b5$ AND b5$=b8$ AND b2$=b8$ THEN
+           
+              text60!=wnd!.addStaticText(541,500,200,90,500, "Player 2 Is Winner")
+              btn2!.setBackColor(BBjColor.BLUE)
+              btn5!.setBackColor(BBjColor.BLUE)
+              btn8!.setBackColor(BBjColor.BLUE)
+          endif
+		
+	endif
+return
+	rem button 9 event
+pushed9:
+	a=MOD(sum,2)
+	IF a=0 then
+		btn9!.setText("X")
+		p=2
+		text17!=wnd!.addStaticText(17,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b9$=btn9!.getText()
+		IF b3$=b6$ AND b6$=b9$ AND b3$=b9$ THEN
+		 
+              text63!=wnd!.addStaticText(544,500,200,90,500, "Player 1 Is Winner")
+              btn3!.setBackColor(BBjColor.RED)
+              btn6!.setBackColor(BBjColor.RED)
+              btn9!.setBackColor(BBjColor.RED)
+          endif
+          IF b7$=b8$ AND b8$=b9$ AND b7$=b9$ THEN
+           
+              text64!=wnd!.addStaticText(545,500,200,90,500, "Player 1 Is Winner")
+              btn7!.setBackColor(BBjColor.RED)
+              btn8!.setBackColor(BBjColor.RED)
+              btn9!.setBackColor(BBjColor.RED)
+          endif
+          IF b1$=b5$ AND b5$=b9$ AND b1$=b9$ THEN
+           
+              text65!=wnd!.addStaticText(546,500,200,90,500, "Player 1 Is Winner")
+              btn1!.setBackColor(BBjColor.RED)
+              btn5!.setBackColor(BBjColor.RED)
+              btn9!.setBackColor(BBjColor.RED)
+          endif
+		
+	
+	else
+		btn9!.setText("O")
+		p=1
+		text18!=wnd!.addStaticText(18,250,500,70,500,"Player"+str(p)+"s Turn")
+		sum=sum+1
+		b9$=btn9!.getText()
+		IF b3$=b6$ AND b6$=b9$ AND b3$=b9$ THEN
+		 
+              text63!=wnd!.addStaticText(544,500,200,90,500, "Player 2 Is Winner")
+              btn3!.setBackColor(BBjColor.BLUE)
+              btn6!.setBackColor(BBjColor.BLUE)
+              btn9!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b7$=b8$ AND b8$=b9$ AND b7$=b9$ THEN
+           
+              text64!=wnd!.addStaticText(545,500,200,90,500, "Player 2 Is Winner")
+              btn7!.setBackColor(BBjColor.BLUE)
+              btn8!.setBackColor(BBjColor.BLUE)
+              btn9!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b1$=b5$ AND b5$=b9$ AND b1$=b9$ THEN
+           
+              text65!=wnd!.addStaticText(546,500,200,90,500, "Player 2 Is Winner")
+              btn1!.setBackColor(BBjColor.BLUE)
+              btn5!.setBackColor(BBjColor.BLUE)
+              btn9!.setBackColor(BBjColor.BLUE)
+          endif
+		
+	endif
+return
+
+byebye:
+    release
